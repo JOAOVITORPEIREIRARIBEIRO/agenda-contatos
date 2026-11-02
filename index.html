@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agenda de Contatos - CRUD</title>
+    <!-- CSS local da aplicação -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- Cabeçalho -->
+      <header class="app-header">
+        <h1 class="page-title">Agenda de Contatos</h1>
+        <p class="page-subtitle">
+          Gerenciamento simples com persistência em localStorage
+        </p>
+      </header>
+
+      <!-- Feedback / Mensagens de Alerta -->
+      <div
+        id="alert-container"
+        class="alert hidden"
+        role="alert"
+      ></div>
+
+      <div class="app-layout">
+        <!-- Formulário de Cadastro / Edição -->
+        <section
+          class="panel form-panel"
+        >
+          <h2 id="form-title" class="panel-title">
+            Novo Contato
+          </h2>
+
+          <form id="contact-form" class="contact-form" novalidate>
+            <input type="hidden" id="contact-id" />
+
+            <!-- Campo Nome -->
+            <div>
+              <label
+                for="name"
+                class="field-label"
+                >Nome Completo *</label
+              >
+              <input
+                type="text"
+                id="name"
+                required
+                class="form-control"
+                placeholder="Ex: Maria Silva"
+              />
+              <span id="name-error" class="field-error hidden"
+                >Nome é obrigatório.</span
+              >
+            </div>
+
+            <!-- Campo Telefone -->
+            <div>
+              <label
+                for="phone"
+                class="field-label"
+                >Telefone</label
+              >
+              <input
+                type="tel"
+                id="phone"
+                class="form-control"
+                placeholder="Ex: (11) 99999-9999"
+              />
+            </div>
+
+            <!-- Campo E-mail -->
+            <div>
+              <label
+                for="email"
+                class="field-label"
+                >E-mail *</label
+              >
+              <input
+                type="email"
+                id="email"
+                required
+                class="form-control"
+                placeholder="Ex: maria@email.com"
+              />
+              <span id="email-error" class="field-error hidden"
+                >Insira um e-mail válido.</span
+              >
+            </div>
+
+            <!-- Campo Observações -->
+            <div>
+              <label
+                for="notes"
+                class="field-label"
+                >Observações</label
+              >
+              <textarea
+                id="notes"
+                rows="3"
+                class="form-control"
+                placeholder="Notas adicionais..."
+              ></textarea>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="form-actions">
+              <button
+                type="submit"
+                id="btn-save"
+                class="button button-primary"
+              >
+                Salvar
+              </button>
+              <button
+                type="button"
+                id="btn-cancel"
+                class="button button-secondary hidden"
+              >
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Lista de Contatos e Busca -->
+        <section
+          class="panel contacts-panel"
+        >
+          <!-- Barra de Busca -->
+          <div class="search-container">
+            <input
+              type="text"
+              id="search-input"
+              class="form-control"
+              placeholder="🔍 Buscar contato por nome..."
+              aria-label="Buscar contato por nome"
+            />
+          </div>
+
+          <!-- Tabela Responsiva -->
+          <div class="table-scroll">
+            <table class="contacts-table">
+              <thead>
+                <tr
+                  class="table-heading"
+                >
+                  <th>Nome</th>
+                  <th>Contato</th>
+                  <th>Obs</th>
+                  <th class="text-right">Ações</th>
+                </tr>
+              </thead>
+              <tbody
+                id="contacts-list"
+                class="contacts-list"
+              >
+                <!-- Inserido dinamicamente pelo JS -->
+              </tbody>
+            </table>
+
+            <div id="empty-state" class="empty-state hidden">
+              Nenhum contato encontrado.
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Script da Aplicação -->
+    <script src="script.js"></script>
+  </body>
+</html>
